@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RJ | ESP32 WiFi Manager</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #0f172a, #111827, #1e293b);
+            color: #e5e7eb;
+        }
+
+        .wifi-card {
+            width: 100%;
+            max-width: 450px;
+            padding: 35px;
+            background: linear-gradient(145deg, #1e293b, #172033);
+            border-radius: 20px;
+            border: 1px solid #334155;
+            box-shadow: 0 15px 40px rgba(0,0,0,.45);
+        }
+
+        .wifi-icon {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #38bdf8;
+            margin-bottom: 10px;
+            font-size: 27px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #94a3b8;
+            margin-bottom: 28px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #7dd3fc;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #475569;
+            border-radius: 8px;
+            outline: none;
+            font-size: 15px;
+            color: #f8fafc;
+            background: #0f172a;
+        }
+
+        input::placeholder {
+            color: #64748b;
+        }
+
+        input:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 3px rgba(56,189,248,.15);
+        }
+
+        button {
+            width: 100%;
+            margin-top: 8px;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            box-shadow: 0 6px 18px rgba(37,99,235,.35);
+        }
+
+        .info {
+            margin-top: 23px;
+            padding: 16px;
+            border-radius: 12px;
+            background: #0f172a;
+            border: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .info strong {
+            color: #7dd3fc;
+        }
+
+        .footer {
+            text-align: center;
+            color: #64748b;
+            margin-top: 22px;
+            font-size: 12px;
+        }
+
+        @media(max-width: 500px) {
+            .wifi-card {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="wifi-card">
+
+    <div class="wifi-icon">📶</div>
+
+    <h1>RJ WiFi Manager</h1>
+
+    <p class="subtitle">
+        Welcome to RJ's ESP32 WiFi Configuration.
+        <br>
+        Connect your ESP32 to your home WiFi.
+    </p>
+
+    <form action="/save" method="POST">
+
+        <div class="form-group">
+            <label for="ssid">WiFi Network Name (SSID)</label>
+
+            <input
+                type="text"
+                id="ssid"
+                name="ssid"
+                placeholder="Enter your WiFi name"
+                required
+                maxlength="32"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="pass">WiFi Password</label>
+
+            <input
+                type="password"
+                id="pass"
+                name="pass"
+                placeholder="Enter your WiFi password"
+                maxlength="63"
+            >
+        </div>
+
+        <button type="submit">
+            Save & Connect
+        </button>
+
+    </form>
+
+    <div class="info">
+        <strong>How to connect:</strong>
+        <br>
+        1. Connect to RJ's ESP32 WiFi.
+        <br>
+        2. Open <strong>http://192.168.4.1</strong>.
+        <br>
+        3. Enter your home WiFi name.
+        <br>
+        4. Enter your home WiFi password.
+        <br>
+        5. Click Save & Connect.
+        <br>
+        6. Wait for ESP32 to restart.
+        <br>
+        7. Check Serial Monitor for the new IP address.
+        <br>
+        8. Open that IP address in Chrome.
+    </div>
+
+    <div class="footer">
+        RJ Beboso ESP32 Monitoring System
+        <br>
+        Activity 6
+    </div>
+
+</div>
+
+</body>
+</html>

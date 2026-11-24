@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RJ - DHT11 Monitoring</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+    <header class="header">
+        <div>
+            <h1>RJ Beboso</h1>
+            <p>Temperature & Humidity Monitoring</p>
+        </div>
+        <a href="/wifi.html" class="wifi-link">📶 WiFi Information</a>
+    </header>
+
+    <div id="firebaseStatus" class="status">
+        Firebase Status: Connecting...
+    </div>
+
+    <div class="dashboard-layout">
+
+        <!-- LEFT MAIN CONTENT -->
+        <main class="dashboard-main">
+
+            <!-- CURRENT READINGS -->
+            <section class="current-section">
+
+                <div class="sensor-card temperature-card">
+                    <h2>🌡️ Temperature</h2>
+                    <div id="currentTemperature" class="sensor-value">-- °C</div>
+                    <p>Current Temperature</p>
+                </div>
+
+                <div class="sensor-card humidity-card">
+                    <h2>💧 Humidity</h2>
+                    <div id="currentHumidity" class="sensor-value">-- %</div>
+                    <p>Current Humidity</p>
+                </div>
+
+            </section>
+
+            <!-- GRAPH -->
+            <section class="card">
+                <div class="section-header">
+                    <div>
+                        <h2>Sensor Graph</h2>
+                        <p>Temperature and humidity readings</p>
+                    </div>
+
+                    <select id="graphDate">
+                        <option value="">Select Date</option>
+                    </select>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="sensorChart"></canvas>
+                </div>
+            </section>
+
+            <!-- HISTORY -->
+            <section class="card">
+
+                <div class="history-header">
+                    <div>
+                        <h2>Sensor History</h2>
+                        <p>Previous DHT11 readings</p>
+                    </div>
+
+                    <button id="toggleHistory" class="blue-button">
+                        Show History
+                    </button>
+                </div>
+
+                <div id="historyContent" class="hidden">
+
+                    <div class="history-controls">
+                        <span id="recordCount">0 records</span>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Temperature</th>
+                                    <th>Humidity</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="historyTableBody">
+                                <tr>
+                                    <td colspan="3">Loading records...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </section>
+
+        </main>
+
+        <!-- RIGHT SIDEBAR -->
+        <aside class="sidebar">
+
+            <section class="card relay-section">
+
+                <div class="relay-header">
+                    <div>
+                        <h2>💡 LED Control</h2>
+                        <p>ESP32 Dual Relay</p>
+                    </div>
+                </div>
+
+                <!-- LED 1 -->
+                <div class="relay-card">
+
+                    <div class="relay-icon">💡</div>
+
+                    <h3>LED 1</h3>
+                    <p>Relay Channel 1</p>
+
+                    <span id="led1Status" class="led-status off">
+                        OFF
+                    </span>
+
+                    <button
+                        id="led1Button"
+                        class="relay-button"
+                        onclick="toggleRelay(1)">
+                        Turn ON
+                    </button>
+
+                </div>
+
+                <!-- LED 2 -->
+                <div class="relay-card">
+
+                    <div class="relay-icon">💡</div>
+
+                    <h3>LED 2</h3>
+                    <p>Relay Channel 2</p>
+
+                    <span id="led2Status" class="led-status off">
+                        OFF
+                    </span>
+
+                    <button
+                        id="led2Button"
+                        class="relay-button"
+                        onclick="toggleRelay(2)">
+                        Turn ON
+                    </button>
+
+                </div>
+
+                <p id="relayMessage"></p>
+
+            </section>
+
+        </aside>
+
+    </div>
+
+    <footer>
+        <p>RJ Beboso | DHT11 Monitoring System | Activity 6</p>
+        <p>ESP32 + Firebase + Dual Relay Control</p>
+    </footer>
+
+</div>
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html>
